@@ -155,7 +155,7 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 
 export default {
   name: "Search",
@@ -176,13 +176,13 @@ export default {
     getAxios() {
       let formData = new FormData();
       formData.append('name', this.name);
-      // formData.append('type', this.type);
-      // formData.append('picture_product', this.picture_product);
-      // formData.append('picture_human', this.picture_human);
-      // formData.append('picture_institutional', this.picture_institutional);
-      // formData.append('tags', this.tags);
-      // formData.append('credits', this.credits);
-      // formData.append('format', this.format);
+      formData.append('type', this.type);
+      formData.append('picture_product', this.picture_product);
+      formData.append('picture_human', this.picture_human);
+      formData.append('picture_institutional', this.picture_institutional);
+      formData.append('tags', this.tags);
+      formData.append('credits', this.credits);
+      formData.append('format', this.format);
       console.log(formData);
       
       const response = axios

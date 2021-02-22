@@ -46,7 +46,7 @@
 
           <div>
             <b-form-group
-              label="limited_utilisation_right"
+              label="Droits d’utilisation limités"
               v-slot="{ ariaDescribedby }"
             >
               <b-form-radio
@@ -67,13 +67,13 @@
           </div>
 
           <div>
-            <p>copyright</p>
-            <b-form-input v-model="copyright" placeholder="copyright"></b-form-input>
+            <p>Copyright</p>
+            <b-form-input v-model="copyright" placeholder="complété si Droit d’utilisation limité = oui"></b-form-input>
           </div>
         </div>
         <div>
           <div>
-            <label for="example-datepicker">deadline_utilisation_right</label>
+            <label for="example-datepicker">Date de fin de droits d’utilisation</label>
             <b-form-datepicker id="example-datepicker" v-model="deadline_utilisation_right" class="mb-2"></b-form-datepicker>
           </div>
           <div>

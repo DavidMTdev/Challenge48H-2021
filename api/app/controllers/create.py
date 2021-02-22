@@ -20,8 +20,6 @@ def createProduct():
 
         for file in files:
             data = {}
-
-            print(file)
             data['name'] = request.form['name']
             data['type'] = request.form['type']
             data['picture_product'] = request.form['picture_product']
@@ -32,7 +30,7 @@ def createProduct():
             data['limited_utilisation_right'] = request.form['limited_utilisation_right']
             data['copyright'] = request.form['copyright']
             data['deadline_utilisation_right'] = request.form['deadline_utilisation_right']
-            data['tags'] = json.loads(request.form['tags'])
+            data['tags'] = request.form['tags'].split(',')
             data['fileName'] = file.filename
 
             result = db.product.insert_one(data)

@@ -7,11 +7,14 @@
     <h1>Your request</h1>
 
     <div id="Forms">
-      <b-form inline id="bform">
+      <b-form inline id="bform" @submit.prevent="getAxios">
         <div>
           <div>
             <p>Nom de la photo</p>
-            <b-form-input v-model="name" placeholder="Filename"></b-form-input>
+            <b-form-input
+              v-model="name"
+              placeholder="Filename"
+            ></b-form-input>
           </div>
 
           <div>
@@ -156,7 +159,7 @@
 
 export default {
   name: "Search",
-  data: function () {
+  data: () => {
     return {
       name: "",
       type: "",
@@ -170,19 +173,32 @@ export default {
     };
   },
   methods: {
-    getAxios: () => {console.log(this.name)
-      //let formData = new FormData();
-      // formData.append("image", );
+    getAxios() {
+      let formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('type', this.type);
+      formData.append('picture_product', this.picture_product);
+      formData.append('picture_human', this.picture_human);
+      formData.append('picture_institutional', this.picture_institutional);
+      formData.append('tags', this.tags);
+      formData.append('credits', this.credits);
+      formData.append('format', this.format);
+      console.log(formData);
+      
+      const response = axios
+        .get("/api/search", formData, {
+          headers: { 'Content-Type': `multipart/form-data` }
+        })
+        .then(function(response) {
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        });
 
-      //axios.get('/api/search', formData, {
-          //headers: {
-            //'Content-Type': 'multipart/form-data'
-          //
-      //}).then((response) => {
-        //console.log(response);
-      //})
-    },
-  },
+        console.log(response)
+    }
+  }
 };
 </script>
 

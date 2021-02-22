@@ -1,13 +1,14 @@
 <template>
   <body>
     <div name="button">
-      <b-button variant="outline-danger">New</b-button>
+      <!-- <b-button variant="outline-danger">New</b-button> -->
+      <router-link to="/create">New</router-link>
     </div>
 
     <h1>Your request</h1>
 
     <div id="Forms">
-      <b-form inline id="bform" @submit.prevent="getAxios">
+      <b-form inline id="bform" @submit="onSubmit">
         <div>
           <div>
             <p>Nom de la photo</p>
@@ -125,16 +126,16 @@
             <b-form-tags input-id="tags-basic" v-model="tags"></b-form-tags>
           </div>
         </div>
-        <b-button @click="getAxios" variant="primary">ENvoyer</b-button>
+        <b-button type="submit" variant="primary">ENvoyer</b-button>
       </b-form>
     </div>
 
     <h1>Results</h1>
 
     <div name="photos">
-      <div id="card">
+      <div id="card" v-for="item in items" :key="item.id">
         <b-card
-          title="CardTitle"
+          title=""
           img-src="https://picsum.photos/600/300/?image=25"
           img-alt="Image"
           img-top
@@ -143,11 +144,12 @@
           class="mb-2"
         >
           <b-card-text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {{item.name}}
           </b-card-text>
 
-          <b-button href="../views/Update.vue" variant="primary">test</b-button>
+          <!-- <b-button href="../views/Update.vue" variant="primary">update</b-button> -->
+          <router-link :to="{ name: 'Update', params: { id: item.id }}">update</router-link>
+
         </b-card>
       </div>
     </div>
@@ -155,7 +157,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 
 export default {
   name: "Search",
@@ -169,34 +171,39 @@ export default {
       tags: [],
       credits: "",
       format: "",
-      list: []
+      items: []
     };
   },
   methods: {
-    getAxios() {
+    async onSubmit(event) {
+      event.preventDefault();
       let formData = new FormData();
-      formData.append('name', this.name);
-      formData.append('type', this.type);
-      formData.append('picture_product', this.picture_product);
-      formData.append('picture_human', this.picture_human);
-      formData.append('picture_institutional', this.picture_institutional);
-      formData.append('tags', this.tags);
-      formData.append('credits', this.credits);
-      formData.append('format', this.format);
-      console.log(formData);
-      
-      const response = axios
-        .get("/api/search", formData, {
-          headers: { 'Content-Type': `multipart/form-data` }
+      formData.append("name", this.name);
+      // formData.append("type", this.type);
+      formData.append("picture_product", this.picture_product);
+      // formData.append("picture_human", this.picture_human);
+      // formData.append("picture_institutional", this.picture_institutional);
+      // formData.append("tags", this.tags);
+      // formData.append("credits", this.credits);
+      // formData.append("format", this.format);
+
+      console.log(...formData);
+      let config = {
+        method: "get",
+        url: "/api/search",
+        headers: { 'Content-Type': 'multipart/form-data' },
+        data: formData
+      };
+
+      const response = await axios(config)
+        .then(function (response) {
+          return response;
         })
-        .then(function(response) {
-          return response
-        })
-        .catch(function(error) {
-          console.log(error)
+        .catch(function (error) {
+          console.log(error);
         });
 
-        console.log(response)
+      this.items = response.data.results
     }
   }
 };
@@ -207,9 +214,9 @@ h1 {
   margin-top: 2%;
 }
 
-#card {
+/* #card {
   padding: 2%;
-}
+} */
 
 #Forms {
   margin-top: 1%;

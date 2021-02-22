@@ -152,7 +152,7 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 
 export default {
   name: "Search",
@@ -170,17 +170,17 @@ export default {
     };
   },
   methods: {
-    getAxios: () => {
-      let formData = new FormData();
+    getAxios: () => {console.log(this.name)
+      //let formData = new FormData();
       // formData.append("image", );
 
-      axios.get('/api/search', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-      }).then((response) => {
-        console.log(response);
-      })
+      //axios.get('/api/search', formData, {
+          //headers: {
+            //'Content-Type': 'multipart/form-data'
+          //
+      //}).then((response) => {
+        //console.log(response);
+      //})
     },
   },
 };

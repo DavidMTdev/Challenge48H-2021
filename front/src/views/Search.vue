@@ -1,8 +1,8 @@
 <template>
   <body>
     <div name="button">
-      <!-- <b-button variant="outline-danger">New</b-button> -->
-      <router-link to="/create">New</router-link>
+      <!--<b-button variant="outline-danger">New</b-button> -->
+      <router-link to="/Create" id="button">Nouvelle photo</router-link>
     </div>
 
     <h1>Your request</h1>
@@ -149,7 +149,7 @@
 
           <!-- <b-button href="../views/Update.vue" variant="primary">update</b-button> -->
           <router-link :to="{ name: 'Update', params: { id: item.id }}">update</router-link>
-
+          
         </b-card>
       </div>
     </div>

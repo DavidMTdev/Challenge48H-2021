@@ -1,7 +1,8 @@
 <template>
   <body>
     <div name="button">
-      <b-button variant="outline-danger">New</b-button>
+      <!--<b-button variant="outline-danger">New</b-button> -->
+      <router-link to="/Create" id="button">Nouvelle photo</router-link>
     </div>
 
     <h1>Your request</h1>
@@ -143,11 +144,10 @@
           class="mb-2"
         >
           <b-card-text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {{tags}}
           </b-card-text>
 
-          <b-button href="../views/Update.vue" variant="primary">test</b-button>
+          <router-link to="/Update/1" id="button">Update</router-link>
         </b-card>
       </div>
     </div>
@@ -155,7 +155,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 
 export default {
   name: "Search",

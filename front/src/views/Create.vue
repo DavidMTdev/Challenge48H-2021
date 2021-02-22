@@ -2,20 +2,20 @@
   <body>
     <div name="button">
       <!-- <b-button variant="outline-danger">New</b-button> -->
-      <router-link to="/">Back</router-link>
+      <router-link to="/" id="button"><b-icon-arrow-left></b-icon-arrow-left></router-link>
     </div>
 
-    <h1>Update</h1>
+    <h1>Create new image</h1>
 
     <div id="Forms">
-      <b-form @submit="onSubmit" id="bform">
-        <div>
-          <div>
+      <b-form inline @submit="onSubmit" id="bform" >
+        <div id="form1">
+          <div id="input">
             <p>Nom de la photo</p>
             <b-form-input v-model="name" placeholder="Filename"></b-form-input>
           </div>
 
-          <div>
+          <div id="input">
             <p>Type d'image</p>
             <b-form-input
               v-model="type"
@@ -23,7 +23,7 @@
             ></b-form-input>
           </div>
 
-          <div>
+          <div id="input">
             <b-form-group
               label="Photo avec produit"
               v-slot="{ ariaDescribedby }"
@@ -31,21 +31,21 @@
               <b-form-radio
                 v-model="picture_product"
                 :aria-describedby="ariaDescribedby"
-                name="some-radios"
+                name="some-radios0"
                 value="oui"
                 >Oui</b-form-radio
               >
               <b-form-radio
                 v-model="picture_product"
                 :aria-describedby="ariaDescribedby"
-                name="some-radios"
+                name="some-radios0"
                 value="non"
                 >Non</b-form-radio
               >
             </b-form-group>
           </div>
 
-          <div>
+          <div id="input">
             <b-form-group
               label="Droits d’utilisation limités"
               v-slot="{ ariaDescribedby }"
@@ -67,17 +67,17 @@
             </b-form-group>
           </div>
 
-          <div>
+          <div id="input">
             <p>Copyright</p>
             <b-form-input v-model="copyright" placeholder="complété si Droit d’utilisation limité = oui"></b-form-input>
           </div>
         </div>
-        <div>
-          <div>
+        <div id="form1">
+          <div id="input">
             <label for="example-datepicker">Date de fin de droits d’utilisation</label>
             <b-form-datepicker id="example-datepicker" v-model="deadline_utilisation_right" class="mb-2"></b-form-datepicker>
           </div>
-          <div>
+          <div id="input">
             <b-form-group
               label="Photo avec Humain"
               v-slot="{ ariaDescribedby }"
@@ -99,7 +99,7 @@
             </b-form-group>
           </div>
 
-          <div>
+          <div id="input">
             <b-form-group
               label="Photo institutionnelle"
               v-slot="{ ariaDescribedby }"
@@ -121,8 +121,8 @@
             </b-form-group>
           </div>
         </div>
-        <div>
-          <div>
+        <div id="form1">
+          <div id="input">
             <p>Credits de la photo</p>
             <b-form-input
               v-model="credits"
@@ -130,7 +130,7 @@
             ></b-form-input>
           </div>
 
-          <div>
+          <div id="input">
             <b-form-group label="format" v-slot="{ ariaDescribedby }">
               <b-form-radio
                 v-model="format"
@@ -149,12 +149,12 @@
             </b-form-group>
           </div>
 
-          <div id="tag">
-            <label for="tags-basic">Type a new tag and press enter</label>
+          <div id="input">
+            <label for="tags-basic">Enter tags you want</label>
             <b-form-tags input-id="tags-basic" v-model="tags"></b-form-tags>
           </div>
 
-          <div>
+          <div id="input">
             <!-- Styled -->
             <!-- <b-form-file
             v-model="file1"
@@ -248,4 +248,14 @@ export default {
 </script>
 
 <style>
+
+#form1{
+  padding: 5%;
+  height: 100%;
+}
+
+#input{
+  margin: 10%;
+}
+
 </style>

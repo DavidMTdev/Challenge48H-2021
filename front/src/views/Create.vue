@@ -1,7 +1,8 @@
 <template>
   <body>
     <div name="button">
-      <b-button variant="outline-danger">New</b-button>
+      <!-- <b-button variant="outline-danger">New</b-button> -->
+      <router-link to="/">Back</router-link>
     </div>
 
     <h1>Update</h1>

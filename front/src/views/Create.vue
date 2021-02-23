@@ -1,11 +1,13 @@
 <template>
   <body>
+    <div style="display: flex;">
     <div name="button">
       <!-- <b-button variant="outline-danger">New</b-button> -->
       <router-link to="/" id="button"><b-icon-arrow-left></b-icon-arrow-left></router-link>
     </div>
 
-    <h1>Create new image</h1>
+    <h1 style="margin-left:5%;margin-top:-1%;">Create new image</h1>
+    </div>
 
     <div id="Forms">
       <b-form inline @submit="onSubmit" id="bform" >
@@ -150,7 +152,7 @@
           </div>
 
           <div id="input">
-            <label for="tags-basic">Enter tags you want</label>
+            <label for="tags-basic" style="max-width: 100%;">Enter tags you want</label>
             <b-form-tags input-id="tags-basic" v-model="tags"></b-form-tags>
           </div>
 
@@ -174,7 +176,7 @@
             <div class="mt-3">Selected file: {{ files ? files.name : "" }}</div>
           </div>
         </div>
-        <div name="button">
+        <div name="button" style="padding-left: 40%;">
           <b-button type="submit" variant="outline-danger">Confirmer</b-button>
         </div>
       </b-form>
@@ -256,6 +258,11 @@ export default {
 
 #input{
   margin: 10%;
+  max-width: 300px;
+}
+
+#Forms{
+  margin-top: 1%;
 }
 
 </style>

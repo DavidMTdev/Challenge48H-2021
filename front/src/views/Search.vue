@@ -9,8 +9,8 @@
 
     <div id="Forms">
       <b-form inline id="bform" @submit="onSubmit">
-        <div>
-          <div>
+        <div id="form1">
+          <div id="input">
             <p>Nom de la photo</p>
             <b-form-input
               v-model="name"
@@ -18,7 +18,7 @@
             ></b-form-input>
           </div>
 
-          <div>
+          <div id="input">
             <p>Type d'image</p>
             <b-form-input
               v-model="type"
@@ -26,7 +26,7 @@
             ></b-form-input>
           </div>
 
-          <div>
+          <div id="input">
             <b-form-group
               label="Photo avec produit"
               v-slot="{ ariaDescribedby }"
@@ -48,8 +48,8 @@
             </b-form-group>
           </div>
         </div>
-        <div>
-          <div>
+        <div id="form1">
+          <div id="input">
             <b-form-group
               label="Photo avec Humain"
               v-slot="{ ariaDescribedby }"
@@ -71,7 +71,7 @@
             </b-form-group>
           </div>
 
-          <div>
+          <div id="input">
             <b-form-group
               label="Photo institutionnelle"
               v-slot="{ ariaDescribedby }"
@@ -93,8 +93,8 @@
             </b-form-group>
           </div>
         </div>
-        <div>
-          <div>
+        <div id="form1">
+          <div id="input">
             <p>Credits de la photo</p>
             <b-form-input
               v-model="credits"
@@ -102,7 +102,7 @@
             ></b-form-input>
           </div>
 
-          <div>
+          <div id="input">
             <b-form-group label="Format" v-slot="{ ariaDescribedby }">
               <b-form-radio
                 v-model="format"
@@ -121,8 +121,8 @@
             </b-form-group>
           </div>
 
-          <div id="tag">
-            <label for="tags-basic">Type a new tag and press enter</label>
+          <div id="input">
+            <label for="tags-basic">Enter tags you want</label>
             <b-form-tags input-id="tags-basic" v-model="tags"></b-form-tags>
           </div>
         </div>
@@ -214,9 +214,10 @@ h1 {
   margin-top: 2%;
 }
 
-/* #card {
-  padding: 2%;
-} */
+#input{
+  margin: 10%;
+  max-width: 300px;
+}
 
 #Forms {
   margin-top: 1%;

@@ -125,7 +125,9 @@
         </div>
       </b-form>
     </div>   
-
+    <div>
+        <b-button @click="deleteItem" variant="danger">Delete</b-button>
+    </div>
   </body>
 </template>
 
@@ -184,6 +186,26 @@ export default {
     },
     fileUpload(event) {
       this.file = event.target.files[0];
+    },
+    async deleteItem() {
+      let config = {
+        method: "post",
+        url: `/api/delete/${this.$route.params.id}`
+      };
+
+      const response = await axios(config)
+        .then(function (response) {
+          return response;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      console.log(response);
+
+      if (response.data.success) {
+        this.$router.push({ name: 'Search' });
+      }
     },
     onSubmit(event) {
       event.preventDefault();

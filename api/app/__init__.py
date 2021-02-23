@@ -6,6 +6,7 @@ from app.settings.config import Config
 from app.controllers.search import search
 from app.controllers.create import create
 from app.controllers.update import update
+from app.controllers.delete import delete
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -16,4 +17,5 @@ CORS(app, resources={r'/*': {'origins': '*'}}, supports_credentials=True)
 app.register_blueprint(search)
 app.register_blueprint(create)
 app.register_blueprint(update)
+app.register_blueprint(delete)
 

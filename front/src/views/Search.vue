@@ -136,9 +136,11 @@
       <div id="card" v-for="item in items" :key="item.id">
         <b-card 
           :title="item.name"
-          img-src="https://picsum.photos/600/300/?image=25"
-          img-alt="Image"
+          :img-src="item.image.url"
+          :img-alt="item.image.name"
           img-top
+          img-height="200"
+          img-width="200"
           tag="article"
           style="max-width: 20rem"
           class="m-4"

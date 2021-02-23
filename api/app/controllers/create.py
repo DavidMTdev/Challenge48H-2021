@@ -6,7 +6,7 @@ from datetime import datetime
 
 create = Blueprint('create', __name__, url_prefix='/api')
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'app/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def allowedFile(filename):

@@ -132,16 +132,16 @@
 
     <h1>Results</h1>
 
-    <div name="photos">
+    <div class="flex-wrap">
       <div id="card" v-for="item in items" :key="item.id">
-        <b-card inline
+        <b-card 
           :title="item.name"
           img-src="https://picsum.photos/600/300/?image=25"
           img-alt="Image"
           img-top
           tag="article"
           style="max-width: 20rem"
-          class="mb-2"
+          class="m-4"
         >
           <b-card-text>
             {{item.name}}
@@ -220,5 +220,10 @@ h1 {
 
 #Forms {
   margin-top: 1%;
+}
+
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

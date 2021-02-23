@@ -28,8 +28,42 @@
             </b-form-group>
 
           </div>
+
+          <div id="input">
+            <b-form-group
+              label="Droits d’utilisation limités"
+              v-slot="{ ariaDescribedby }"
+            >
+              <b-form-radio
+                v-model="limited_utilisation_right"
+                :aria-describedby="ariaDescribedby"
+                name="some-radios"
+                value="oui"
+                >Oui</b-form-radio
+              >
+              <b-form-radio
+                v-model="limited_utilisation_right"
+                :aria-describedby="ariaDescribedby"
+                name="some-radios"
+                value="non"
+                >Non</b-form-radio
+              >
+            </b-form-group>
+          </div>
+
+          <div id="input">
+            <p>Copyright</p>
+            <b-form-input v-model="copyright" placeholder="complété si Droit d’utilisation limité = oui"></b-form-input>
+          </div>
+
         </div>
         <div id="form1">
+
+          <div id="input">
+            <label for="example-datepicker">Date de fin de droits d’utilisation</label>
+            <b-form-datepicker id="example-datepicker" v-model="deadline_utilisation_right" class="mb-2"></b-form-datepicker>
+          </div>
+
           <div id="input">
             <b-form-group label="Photo avec Humain" v-slot="{ ariaDescribedby }">
                 <b-form-radio v-model="picture_human" :aria-describedby="ariaDescribedby" name="some-radios1" value="oui">Oui</b-form-radio>
@@ -45,14 +79,15 @@
 
           </div>
 
-          <div id="input">
-            <p>Credits de la photo</p>
-            <b-form-input v-model="credits" placeholder="Credits"></b-form-input>
-          </div>
+          
 
         </div>
         <div id="form1">
           
+          <div id="input">
+            <p>Credits de la photo</p>
+            <b-form-input v-model="credits" placeholder="Credits"></b-form-input>
+          </div>
 
           <div id="input">
             <b-form-group label="format" v-slot="{ ariaDescribedby }">
@@ -63,7 +98,7 @@
           </div>
 
           <div id="input">
-            <label for="tags-basic">Type a new tag and press enter</label>
+            <label for="tags-basic">Enter tags you want</label>
             <b-form-tags input-id="tags-basic" v-model="tags"></b-form-tags>
             <!-- <p class="mt-2">Value: {{ value }}</p> -->
           </div>

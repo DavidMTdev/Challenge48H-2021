@@ -126,7 +126,7 @@
             <b-form-tags input-id="tags-basic" v-model="tags"></b-form-tags>
           </div>
         </div>
-        <b-button type="submit" variant="primary">ENvoyer</b-button>
+        <b-button type="submit" id="button">ENvoyer</b-button>
       </b-form>
     </div>
 
@@ -134,7 +134,7 @@
 
     <div name="photos">
       <div id="card" v-for="item in items" :key="item.id">
-        <b-card
+        <b-card inline
           :title="item.name"
           img-src="https://picsum.photos/600/300/?image=25"
           img-alt="Image"

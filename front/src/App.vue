@@ -22,6 +22,7 @@ padding-bottom: 5%;
   color: #ff4d4d;
   padding: 0.5%;
   border: solid 2px #ff4d4d;
+  background-color: white;
 }
 
 #button:hover {

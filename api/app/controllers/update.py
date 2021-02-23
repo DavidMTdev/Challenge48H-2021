@@ -3,8 +3,10 @@ from flask import Blueprint, request, jsonify, redirect, url_for
 from app.settings.database import db
 from werkzeug.utils import secure_filename
 from datetime import datetime
+from bson.objectid import ObjectId
 
-create = Blueprint('create', __name__, url_prefix='/api')
+
+update = Blueprint('update', __name__, url_prefix='/api')
 
 UPLOAD_FOLDER = 'app/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -13,13 +15,12 @@ def allowedFile(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@create.route("/create", methods=['POST'])
-def createProduct():
-    if request.files and request.form:
-        files = request.files.getlist('file')
-
-        for file in files:
-            data = {}
+@update.route("/update/<id>", methods=['POST'])
+def updateProduct(id):
+    result = db.product.find_one({'_id': ObjectId(id)})
+    data = {}
+    if result:
+        if request.form:
             data['name'] = request.form['name']
             data['type'] = request.form['type']
             data['picture_product'] = request.form['picture_product']
@@ -31,30 +32,27 @@ def createProduct():
             data['copyright'] = request.form['copyright']
             data['deadline_utilisation_right'] = request.form['deadline_utilisation_right']
             data['tags'] = request.form['tags'].split(',')
-            data['fileName'] = file.filename
 
-            result = db.product.insert_one(data)
+        if request.files:
+            file = request.files['file']
 
             if file and allowedFile(file.filename):
-                newFileName = str(result.inserted_id) + '.png'
+                newFileName = id + '.png'
                 fileName = secure_filename(newFileName)
                 file.save(os.path.join(UPLOAD_FOLDER, fileName))
+                data['fileName'] = file.filename
 
-                response = {
-                    "success": True,
-                    "message": "le fichier a été stocker dans le serveur"
-                }
-            else:
-                db.product.delete_one({'_id': result.inserted_id})
+        result = db.product.update_one({'_id': ObjectId(id)}, {'$set': data})
 
-                response = {
-                    "success": False,
-                    "message": "le fichier doit etre en format png, jpg ou jpeg"
-                }
+        response = {
+            "success": True,
+            "message": "Tout les attributs n'ont pas été envoyer"
+        }
+
     else:
         response = {
-                "success": False,
-                "message": "Tout les attributs n'ont pas été envoyer"
-         }
+            "success": False,
+            "message": "Tout les attributs n'ont pas été envoyer"
+        }
     
     return jsonify(response)

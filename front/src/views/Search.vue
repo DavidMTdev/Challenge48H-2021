@@ -132,16 +132,18 @@
 
     <h1>Results</h1>
 
-    <div name="photos">
+    <div class="flex-wrap">
       <div id="card" v-for="item in items" :key="item.id">
-        <b-card inline
+        <b-card 
           :title="item.name"
-          img-src="https://picsum.photos/600/300/?image=25"
-          img-alt="Image"
+          :img-src="item.image.url"
+          :img-alt="item.image.name"
           img-top
+          img-height="200"
+          img-width="200"
           tag="article"
           style="max-width: 20rem"
-          class="mb-2"
+          class="m-4"
         >
           <b-card-text>
             {{item.name}}
@@ -179,19 +181,18 @@ export default {
       event.preventDefault();
       let formData = new FormData();
       formData.append("name", this.name);
-      // formData.append("type", this.type);
+      formData.append("type", this.type);
       formData.append("picture_product", this.picture_product);
-      // formData.append("picture_human", this.picture_human);
-      // formData.append("picture_institutional", this.picture_institutional);
-      // formData.append("tags", this.tags);
-      // formData.append("credits", this.credits);
-      // formData.append("format", this.format);
+      formData.append("picture_human", this.picture_human);
+      formData.append("picture_institutional", this.picture_institutional);
+      formData.append("tags", this.tags);
+      formData.append("credits", this.credits);
+      formData.append("format", this.format);
 
-      console.log(...formData);
       let config = {
-        method: "get",
+        method: "post",
         url: "/api/search",
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { 'Content-Type': `multipart/form-data` },
         data: formData
       };
 
@@ -221,5 +222,10 @@ h1 {
 
 #Forms {
   margin-top: 1%;
+}
+
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

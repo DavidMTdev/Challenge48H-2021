@@ -1,14 +1,12 @@
 <template>
   <body>
-    <div style="display: flex;">
-    <div name="button">
+    <div>
       <!-- <b-button variant="outline-danger">New</b-button> -->
       <router-link to="/" id="button"><b-icon-arrow-left></b-icon-arrow-left></router-link>
     </div>
-
-    <h1 style="margin-left:5%;margin-top:-1%;">Create new image</h1>
-    </div>
-
+  <div class="mt-5">
+    <h1>Create new image</h1>
+  </div>
     <div id="Forms">
       <b-form inline @submit="onSubmit" id="bform" >
         <div id="form1">

@@ -179,19 +179,18 @@ export default {
       event.preventDefault();
       let formData = new FormData();
       formData.append("name", this.name);
-      // formData.append("type", this.type);
+      formData.append("type", this.type);
       formData.append("picture_product", this.picture_product);
-      // formData.append("picture_human", this.picture_human);
-      // formData.append("picture_institutional", this.picture_institutional);
-      // formData.append("tags", this.tags);
-      // formData.append("credits", this.credits);
-      // formData.append("format", this.format);
+      formData.append("picture_human", this.picture_human);
+      formData.append("picture_institutional", this.picture_institutional);
+      formData.append("tags", this.tags);
+      formData.append("credits", this.credits);
+      formData.append("format", this.format);
 
-      console.log(...formData);
       let config = {
-        method: "get",
+        method: "post",
         url: "/api/search",
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { 'Content-Type': `multipart/form-data` },
         data: formData
       };
 

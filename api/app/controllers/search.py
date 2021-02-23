@@ -3,10 +3,8 @@ from app.settings.database import db
 
 search = Blueprint('search', __name__, url_prefix='/api')
 
-@search.route("/search", methods=['GET'])
+@search.route("/search", methods=['POST'])
 def getSearch():
-    print(request.form)
-
     data = {}
 
     for r in request.form:
